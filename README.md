@@ -1,0 +1,2 @@
+# murli-virtualCR
+Bringing back all class room activity on the web by the mean of internet. This project help to make strong connection (bond) between Teacher and Student in education system. This supports the education for all policies without compromising the quality of education. This removes the geographical barrier for the learner to learn new things. C# and .NET technologies are used to developed this project.
