@@ -1,0 +1,126 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="student.master.cs" Inherits="student_student" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1
+        {
+            width: 189px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <table style="width: 100%;">
+            <tr>
+                <td class="style1" bgcolor="White">
+                    &nbsp;
+                    welcome,<br><asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                    <br />
+                    <asp:LinkButton ID="LinkButton1" runat="server" onclick="LinkButton1_Click">LogOut</asp:LinkButton>
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td class="style1" valign="top">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" 
+                        EnableViewState="false" IncludeStyleBlock="false">
+                    <Items>
+                        <asp:MenuItem Text="HOME" Value="HOME"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/student/student.aspx" Text="Change Password" 
+                            Value="Change Password"></asp:MenuItem>
+                        <asp:MenuItem Text="Tutorial Subject " Value="Tutorial Subject " 
+                            NavigateUrl="~/student/tut_subject.aspx"/>
+                        <asp:MenuItem Text="Asking Question" Value="Asking Question" 
+                            NavigateUrl="~/student/asking.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Answers" Value="Answers" 
+                            NavigateUrl="~/student/answer.aspx"></asp:MenuItem>
+                    </Items>
+                </asp:Menu>
+                </td>
+                <td colspan="2" valign="top">
+                    &nbsp;<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+                        <asp:Panel ID="Panel1" runat="server" GroupingText="Answer to the question" 
+                            BackColor="White">
+                            <asp:FormView ID="FormView1" runat="server" 
+    DataKeyNames="sno" DataSourceID="SqlDataSource1" AllowPaging="True" Width="545px">
+                                <EditItemTemplate>
+                                    sno:
+                                    <asp:Label ID="snoLabel1" runat="server" Text='<%# Eval("sno") %>' />
+                                    <br />
+                                    Tut_id:
+                                    <asp:TextBox ID="Tut_idTextBox" runat="server" Text='<%# Bind("Tut_id") %>' />
+                                    <br />
+                                    Answer:
+                                    <asp:TextBox ID="AnswerTextBox" runat="server" Text='<%# Bind("Answer") %>' />
+                                    <br />
+                                    email:
+                                    <asp:TextBox ID="emailTextBox" runat="server" Text='<%# Bind("email") %>' />
+                                    <br />
+                                    <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" 
+            CommandName="Update" Text="Update" />
+                                    &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" 
+            CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                                </EditItemTemplate>
+                                <InsertItemTemplate>
+                                    Tut_id:
+                                    <asp:TextBox ID="Tut_idTextBox" runat="server" Text='<%# Bind("Tut_id") %>' />
+                                    <br />
+                                    Answer:
+                                    <asp:TextBox ID="AnswerTextBox" runat="server" Text='<%# Bind("Answer") %>' />
+                                    <br />
+                                    email:
+                                    <asp:TextBox ID="emailTextBox" runat="server" Text='<%# Bind("email") %>' />
+                                    <br />
+                                    <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" 
+            CommandName="Insert" Text="Insert" />
+                                    &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" 
+            CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                                </InsertItemTemplate>
+                                <ItemTemplate>
+                                    <br />
+                                    Tut_id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="Tut_idLabel" runat="server" Text='<%# Bind("Tut_id") %>' />
+                                    <hr />
+                                    <br />
+                                    Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="AnswerLabel" runat="server" Text='<%# Bind("Answer") %>' />
+                                    <hr />
+                                    <br />
+                                    email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="emailLabel" runat="server" Text='<%# Bind("email") %>' />
+                                    <br />
+                                    <br />
+                                </ItemTemplate>
+                            </asp:FormView>
+                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+    ConnectionString="<%$ ConnectionStrings:dbConnectionString %>" 
+    SelectCommand="SELECT * FROM [answer] WHERE ([email] = @email)">
+                                <SelectParameters>
+                                    <asp:SessionParameter Name="email" SessionField="email" Type="String" />
+                                </SelectParameters>
+                            </asp:SqlDataSource>
+
+                        </asp:Panel>
+        
+        </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            </table>
+    </div>
+    </form>
+</body>
+</html>
