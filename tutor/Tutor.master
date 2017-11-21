@@ -1,0 +1,70 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Tutor.master.cs" Inherits="tutor_Tutor" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1
+        {
+            width: 1039px;
+        }
+        .style2
+        {
+            width: 202px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <table style="width: 100%;">
+            <tr>
+                <td class="style2" bgcolor="White">
+                    Welcome,<asp:Literal ID="Literal1" runat="server"></asp:Literal>
+                    <br />
+                    <asp:LinkButton ID="LinkButton1" runat="server" onclick="LinkButton1_Click">LogOut</asp:LinkButton>
+                </td>
+                <td class="style4">
+                    &nbsp;
+                </td>
+                <td class="style5">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td class="style2" valign="top">
+                   <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Vertical">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem Text="CHANGE PASSWORD" Value="CHANGE PASSWORD" 
+                            NavigateUrl="~/tutor/changePassword.aspx"/>
+                        <asp:MenuItem Text="Enter Data to Alloted Subject" Value="Alloted Subject" 
+                            NavigateUrl="~/tutor/AllotedSubject.aspx"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/tutor/question.aspx" Text="Asked Question" 
+                            Value="Asked Question"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/tutor/answer.aspx" Text="Give Answer" 
+                            Value="Give Answer"></asp:MenuItem>
+                    </Items>
+                </asp:Menu>&nbsp;&nbsp; </td>
+                <td class="style1" valign="top">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+                    
+                    </td>
+                <td>
+                    &nbsp;
+                    &nbsp;
+                </td>
+            </tr>
+            </table>
+        
+    </div>
+    </form>
+</body>
+</html>
